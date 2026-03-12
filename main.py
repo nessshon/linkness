@@ -6,7 +6,7 @@ import redis.asyncio as redis
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from nanoid import generate
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, AnyUrl
 
 TTL_DEFAULT = 86400
 TTL_MIN = 60
@@ -29,7 +29,7 @@ app = FastAPI(title="linkness", lifespan=lifespan)
 
 
 class ShortenRequest(BaseModel):
-    url: HttpUrl
+    url: AnyUrl
     ttl: int | None = None
 
 
